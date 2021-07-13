@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
-using System.IO;
 
 namespace Pluralsight.SOLID.RatingEngineSample
 {
@@ -19,7 +18,7 @@ namespace Pluralsight.SOLID.RatingEngineSample
             string policyJson = PolicySource.GetPolicyFromSource();
 
             var policy = JsonConvert.DeserializeObject<Policy>
-                (policyJson, 
+                (policyJson,
                 new StringEnumConverter());
 
             switch (policy.Type)
@@ -27,7 +26,7 @@ namespace Pluralsight.SOLID.RatingEngineSample
                 case PolicyType.Auto:
                     Logger.Log("Rating AUTO policy...");
                     Logger.Log("Validating policy.");
-                    
+
                     if (String.IsNullOrEmpty(policy.Make))
                     {
                         Logger.Log("Auto policy must specify Make");
@@ -39,7 +38,7 @@ namespace Pluralsight.SOLID.RatingEngineSample
                         Rating = 900m;
                         if (policy.Deductible < 500)
                         {
-                            Rating = 1000m; 
+                            Rating = 1000m;
                         }
                     }
                     break;
